@@ -24,23 +24,16 @@ app.use("/public", express.static(path.join(__dirname, "public")))
 function get_all_data(req, res) {
   MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
     let dbo = db.db(database_name)
-    let bands = dbo.collection(table)
-    let cursor = bands.find({})
-    let arr = []
-    cursor.forEach(
-      item => {
-        if (item != null) {
-          arr.push(item)
-        }
-      },
-      err => {
-        if (err) {
-          console.log(`There was an error: ${err}`)
-        }
-        res.send(arr)
+    dbo
+      .collection(table)
+      .find()
+      .sort({ date: 1 })
+      .toArray((err, result) => {
+        if (err) throw err
+        console.log(result)
+        res.send(result)
         db.close()
-      }
-    )
+      })
   })
 }
 
