@@ -7,11 +7,39 @@ let col = config.collection_name
 
 let url = root_url + database
 
+let data = [
+  {
+    name: "Band1",
+    support: "Support1",
+    city: "City1",
+    venue: "Venue1",
+    date: "11/11/1111",
+    notes: "notes1"
+  },
+  {
+    name: "Band2",
+    support: "Support2",
+    city: "City2",
+    venue: "Venue2",
+    date: "22/22/2222",
+    notes:
+      "The Quick Brown Fox Jumps Over The Lazy Frog The Quick Brown Fox Jumps Over The Lazy Frog The Quick Brown Fox Jumps Over The Lazy Frog"
+  },
+  {
+    name: "Band2",
+    support: "Support2",
+    city: "City2",
+    venue: "Venue2",
+    date: "22/22/3000",
+    notes:
+      "This should be at the top becuse this is sorted by date and it is the latest entry"
+  }
+]
+
 MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
   if (err) throw err
   let dbo = db.db(database)
-  let myobj = [{ id: "1", name: "Test1", date: "11/11/1111" }]
-  dbo.collection(col).insertMany(myobj, (err, res) => {
+  dbo.collection(col).insertMany(data, (err, res) => {
     if (err) throw err
     console.log("Number of documents inserted: " + res.insertedCount)
     db.close()
