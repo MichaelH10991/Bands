@@ -24,7 +24,7 @@ function create_table(data) {
 
   var tr = table.insertRow(-1) // TABLE ROW.
 
-  for (var i = 0; i < col.length; i++) {
+  for (var i = 2; i < col.length; i++) {
     var th = document.createElement("th") // TABLE HEADER.
     th.innerHTML = col[i]
     tr.appendChild(th)
@@ -34,7 +34,7 @@ function create_table(data) {
   for (var i = 0; i < data.length; i++) {
     tr = table.insertRow(-1)
 
-    for (var j = 0; j < col.length; j++) {
+    for (var j = 2; j < col.length; j++) {
       var tabCell = tr.insertCell(-1)
       tabCell.innerHTML = data[i][col[j]]
     }
