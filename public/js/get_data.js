@@ -1,12 +1,15 @@
-fetch("http://localhost:8081/bands")
-  .then(res => res.json())
-  .then(data => {
-    console.log(data)
-    create_table(data)
-  })
+async function get_data() {
+  let res = await fetch("http://localhost:8081/api/bands")
+  let data = await res.json()
+  console.log(data)
+  create_table(data)
+}
+get_data().catch(err => {
+  console.log(`There was a fetch error: ${err}`)
+})
 
 function create_table(data) {
-  // EXTRACT VALUE FOR HTML HEADER.
+  // create table header
   let col = []
   for (let i = 1; i < data.length; i++) {
     for (let key in data[i]) {
@@ -17,15 +20,15 @@ function create_table(data) {
   }
   console.log(col)
 
-  // CREATE DYNAMIC TABLE.
+  // get table from DOM
   var table = document.getElementById("data_table")
 
-  // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+  // create html table header row using the extracted headers above
 
-  var tr = table.insertRow(-1) // TABLE ROW.
+  var tr = table.insertRow(-1)
 
   for (var i = 2; i < col.length; i++) {
-    var th = document.createElement("th") // TABLE HEADER.
+    var th = document.createElement("th")
     th.innerHTML = col[i]
     tr.appendChild(th)
   }
