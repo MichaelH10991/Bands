@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/index.html"))
 })
 
-app.route("/bands").get((req, res) => {
+app.route("/api/bands").get((req, res) => {
   get_all_data(req, res)
 })
 
