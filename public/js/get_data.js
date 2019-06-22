@@ -9,16 +9,16 @@ get_data().catch(err => {
 })
 
 function create_table(data) {
-  // create table header
-  let col = []
+  // // create table header
+  let cols = ["Name", "Support", "City", "Venue", "Date", "Notes"]
+  let keys = []
   for (let i = 1; i < data.length; i++) {
     for (let key in data[i]) {
-      if (col.indexOf(key) === -1) {
-        col.push(key)
+      if (keys.indexOf(key) === -1) {
+        keys.push(key)
       }
     }
   }
-  console.log(col)
 
   // get table from DOM
   var table = document.getElementById("data_table")
@@ -27,9 +27,9 @@ function create_table(data) {
 
   var tr = table.insertRow(-1)
 
-  for (var i = 2; i < col.length; i++) {
+  for (var i = 0; i < cols.length; i++) {
     var th = document.createElement("th")
-    th.innerHTML = col[i]
+    th.innerHTML = cols[i]
     tr.appendChild(th)
   }
 
@@ -37,9 +37,9 @@ function create_table(data) {
   for (var i = 0; i < data.length; i++) {
     tr = table.insertRow(-1)
 
-    for (var j = 2; j < col.length; j++) {
+    for (var j = 1; j < keys.length; j++) {
       var tabCell = tr.insertCell(-1)
-      tabCell.innerHTML = data[i][col[j]]
+      tabCell.innerHTML = data[i][keys[j]]
     }
   }
 
