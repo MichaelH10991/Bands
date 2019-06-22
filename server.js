@@ -3,12 +3,12 @@ let path = require("path")
 let app = express()
 let config = require("./database_config/config")
 let MongoClient = require("mongodb").MongoClient
-let remove = require("./database_config/remove_data")
 
-// database config
-let url = config.database_url
-let database_name = config.database_name
-let table = config.collection_name
+let get_all_events = require("./database_config/get_all_events.js")
+let delete_all_events = require("./database_config/delete_all_events.js")
+// TODO
+// let get_event = require("./database_config/get_event.js")
+// let update_event = require("./database_config/update_event.js")
 
 let PORT = process.env.PORT || 8081
 
@@ -17,28 +17,14 @@ app.get("/", (req, res) => {
 })
 
 app.route("/api/bands").get((req, res) => {
-  get_all_data(req, res)
+  get_all_events(req, res)
+})
+
+app.route("/api/delete_all").get((req, res) => {
+  delete_all_events(req, res)
 })
 
 app.use("/public", express.static(path.join(__dirname, "public")))
-
-function get_all_data(req, res) {
-  MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
-    if (db) {
-      let dbo = db.db(database_name)
-      dbo
-        .collection(table)
-        .find()
-        .sort({ datefield: -1 })
-        .toArray((err, result) => {
-          if (err) throw err
-          console.log(result)
-          res.send(result)
-          db.close()
-        })
-    }
-  })
-}
 
 app.listen(PORT)
 
