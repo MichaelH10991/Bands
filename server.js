@@ -3,6 +3,7 @@ let path = require("path")
 let app = express()
 let config = require("./database_config/config")
 let MongoClient = require("mongodb").MongoClient
+let remove = require("./database_config/remove_data")
 
 // database config
 let url = config.database_url
@@ -12,7 +13,7 @@ let table = config.collection_name
 let PORT = process.env.PORT || 8081
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/index.html"))
+  res.sendFile(path.join(__dirname + "/public/views/index.html"))
 })
 
 app.route("/api/bands").get((req, res) => {
@@ -23,17 +24,19 @@ app.use("/public", express.static(path.join(__dirname, "public")))
 
 function get_all_data(req, res) {
   MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
-    let dbo = db.db(database_name)
-    dbo
-      .collection(table)
-      .find()
-      .sort({ date: 1 })
-      .toArray((err, result) => {
-        if (err) throw err
-        console.log(result)
-        res.send(result)
-        db.close()
-      })
+    if (db) {
+      let dbo = db.db(database_name)
+      dbo
+        .collection(table)
+        .find()
+        .sort({ datefield: -1 })
+        .toArray((err, result) => {
+          if (err) throw err
+          console.log(result)
+          res.send(result)
+          db.close()
+        })
+    }
   })
 }
 
