@@ -14,6 +14,7 @@ let data = [
     city: "City1",
     venue: "Venue1",
     datefield: "11/11/1111",
+    day: "Tuesday",
     notes: "notes1"
   },
   {
@@ -22,6 +23,7 @@ let data = [
     city: "City2",
     venue: "Venue2",
     datefield: "22/22/2222",
+    day: "Tuesday",
     notes:
       "The Quick Brown Fox Jumps Over The Lazy Frog The Quick Brown Fox Jumps Over The Lazy Frog The Quick Brown Fox Jumps Over The Lazy Frog"
   },
@@ -31,6 +33,7 @@ let data = [
     city: "City2",
     venue: "Venue2",
     datefield: "22/22/3000",
+    day: "Tuesday",
     notes:
       "This should be at the top becuse this is sorted by date and it is the latest entry"
   }
