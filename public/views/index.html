@@ -4,11 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link rel="stylesheet" href="/public/css/style.css" />
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Raleway"
   />
   <script src="/public/js/fetch_data.js"></script>
+  <script src="/public/js/visual.js"></script>
   <style>
     body,
     h1,
@@ -48,10 +50,19 @@ and is wrapped around the whole page content, except for the footer in this exam
               <p>
                 Here is a historic table of the bands that I have seen.
               </p>
-
               <div id="table-container">
                 <table id="data_table" border="1"></table>
               </div>
+              <button class="collapsible">Open Collapsible</button>
+              <form id="create_new_event">
+                <div class="col-md-6">
+                  <p>Name</p>
+                </div>
+                <div class="col-md-6">
+                    <input id="name" ></input>
+                </div>
+                  
+              </form>
 
               <div class="w3-row">
                 <div class="w3-col m8 s12">
