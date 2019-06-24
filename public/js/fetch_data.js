@@ -9,7 +9,7 @@ get_data().catch(err => {
 })
 
 function create_table(data) {
-  // // create table header
+  // create table header
   let cols = ["Name", "Support", "City", "Venue", "Date", "Day", "Notes"]
   let keys = []
   for (let i = 1; i < data.length; i++) {
