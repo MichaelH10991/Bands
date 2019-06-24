@@ -4,13 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+    crossorigin="anonymous"
+  />
   <link rel="stylesheet" href="/public/css/style.css" />
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Raleway"
   />
   <script src="/public/js/fetch_data.js"></script>
-  <script src="/public/js/visual.js"></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+    crossorigin="anonymous"
+  ></script>
   <style>
     body,
     h1,
@@ -53,16 +64,36 @@ and is wrapped around the whole page content, except for the footer in this exam
               <div id="table-container">
                 <table id="data_table" border="1"></table>
               </div>
-              <button class="collapsible">Open Collapsible</button>
-              <form id="create_new_event">
-                <div class="col-md-6">
-                  <p>Name</p>
-                </div>
-                <div class="col-md-6">
-                    <input id="name" ></input>
-                </div>
-                  
-              </form>
+
+              <button class="collapsible">
+                Create New Event
+              </button>
+              <div class="content">
+                <form>
+                  Name<br />
+                  <input type="text" name="name" />
+                  <br />
+                  Support<br />
+                  <input type="text" name="support" />
+                  <br />
+                  City<br />
+                  <input type="text" name="city" />
+                  <br />
+                  Venue<br />
+                  <input type="text" name="venue" />
+                  <br />
+                  Date<br />
+                  <input type="text" name="date" />
+                  <br />
+                  Day<br />
+                  <input type="text" name="day" />
+                  <br />
+                  Notes<br />
+                  <input type="text" name="notes" />
+                  <br />
+                  <input type="submit" value="Submit" onClick="post_data.js" />
+                </form>
+              </div>
 
               <div class="w3-row">
                 <div class="w3-col m8 s12">
@@ -169,5 +200,6 @@ and is wrapped around the whole page content, except for the footer in this exam
       </p>
       <div id="data"></div>
     </footer>
+    <script src="/public/js/visual.js"></script>
   </body>
 </html>
