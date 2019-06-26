@@ -1,6 +1,9 @@
 let express = require("express")
 let path = require("path")
 let app = express()
+let bodyParser = require("body-parser")
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 let get_all_events = require("./database_config/get_all_events.js")
 let delete_all_events = require("./database_config/delete_all_events.js")
@@ -16,8 +19,9 @@ app.get("/", (req, res) => {
 })
 
 app.post("/api/create", (req, res) => {
-  console.log(req)
-  // create_event(req, res)
+  console.log(req.body)
+
+  create_event(req.body)
 })
 
 app.route("/api/bands").get((req, res) => {
