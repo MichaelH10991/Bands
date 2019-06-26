@@ -17,6 +17,7 @@
     href="https://fonts.googleapis.com/css?family=Raleway"
   />
   <script src="/public/js/fetch_data.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script
     src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
     integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
@@ -69,7 +70,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                 Create New Event
               </button>
               <div class="content">
-                <form>
+                <form id="event_form">
                   Name<br />
                   <input type="text" name="name" />
                   <br />
@@ -91,7 +92,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                   Notes<br />
                   <input type="text" name="notes" />
                   <br />
-                  <input type="submit" value="Submit" onClick="post_data.js" />
+                  <input type="submit" value="Submit" />
                 </form>
               </div>
 
@@ -201,5 +202,6 @@ and is wrapped around the whole page content, except for the footer in this exam
       <div id="data"></div>
     </footer>
     <script src="/public/js/visual.js"></script>
+    <script src="/public/js/post_data.js"></script>
   </body>
 </html>

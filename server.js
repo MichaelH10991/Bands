@@ -34,6 +34,4 @@ app.route("/api/delete_all").get((req, res) => {
 
 app.use("/public", express.static(path.join(__dirname, "public")))
 
-app.listen(PORT)
-
-console.log("app listening on port", PORT)
+app.listen(PORT, () => console.log(`server listening on port: ${PORT}`))
