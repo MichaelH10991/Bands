@@ -7,7 +7,7 @@ module.exports = function(req, res) {
   let database_name = config.database_name
   let table = config.collection_name
 
-  MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
     if (db) {
       if (err) throw err
       var dbo = db.db(database_name)
