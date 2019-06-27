@@ -16,7 +16,7 @@
     rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Raleway"
   />
-  <script src="/public/js/fetch_data.js"></script>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script
     src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
@@ -48,7 +48,7 @@ and is wrapped around the whole page content, except for the footer in this exam
       <!-- Grid -->
       <div class="w3-row">
         <!-- Blog entries -->
-        <div class="w3-col l8 s12">
+        <div class="w3-col l12 s12">
           <!-- Blog entry -->
           <div class="w3-card-4 w3-margin w3-white">
             <!--<img src="" alt="Nature" style="width:100%">-->
@@ -66,7 +66,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                 <table id="data_table" border="1"></table>
               </div>
 
-              <button class="collapsible">
+              <button class="collapsible button-margin">
                 Create New Event
               </button>
               <div class="content">
@@ -100,7 +100,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                 <div class="w3-col m8 s12">
                   <p>
                     <button
-                      class="w3-button w3-padding-large w3-white w3-border"
+                      class="w3-button w3-padding-large w3-white w3-border button-margin"
                     >
                       <b>Download Table</b>
                     </button>
@@ -160,22 +160,6 @@ and is wrapped around the whole page content, except for the footer in this exam
           <!-- END BLOG ENTRIES -->
         </div>
 
-        <!-- Introduction menu -->
-        <div class="w3-col l4">
-          <!-- About Card -->
-          <div class="w3-card w3-margin w3-margin-top">
-            <img src="/public/resources/USAGuitarIcon.svg" style="width:100%" />
-            <div class="w3-container w3-white">
-              <h4><b>Mike</b></h4>
-              <p>Stuff, Stuff, Stuff, Stuff.</p>
-            </div>
-          </div>
-          <hr />
-          <hr />
-
-          <!-- END Introduction Menu -->
-        </div>
-
         <!-- END GRID -->
       </div>
       <br />
@@ -202,6 +186,7 @@ and is wrapped around the whole page content, except for the footer in this exam
       <div id="data"></div>
     </footer>
     <script src="/public/js/visual.js"></script>
+    <script src="/public/js/fetch_data.js"></script>
     <script src="/public/js/post_data.js"></script>
   </body>
 </html>
