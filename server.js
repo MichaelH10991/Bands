@@ -1,18 +1,22 @@
 let express = require("express")
+let environment = require("dotenv").config()
 let path = require("path")
 let app = express()
 let bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-let get_all_events = require("./database_config/get_all_events.js")
-let delete_all_events = require("./database_config/delete_all_events.js")
-let create_event = require("./database_config/create_event.js")
+let {
+  getAllEvents,
+  deleteAllEvents,
+  createEvent
+} = require("./database_config/get_all_events.js")
+
 // TODO
 // let get_event = require("./database_config/get_event.js")
 // let update_event = require("./database_config/update_event.js")
 
-let PORT = process.env.PORT || 8081
+let PORT = process.env.PORT || process.env.SERVER_PORT
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/views/index.html"))
@@ -21,15 +25,15 @@ app.get("/", (req, res) => {
 app.post("/api/create", (req, res) => {
   console.log(req.body)
 
-  create_event(req.body)
+  createEvent(req.body)
 })
 
 app.route("/api/bands").get((req, res) => {
-  get_all_events(req, res)
+  getAllEvents(req, res)
 })
 
 app.route("/api/delete_all").get((req, res) => {
-  delete_all_events(req, res)
+  deleteAllEvents(req, res)
 })
 
 app.use("/public", express.static(path.join(__dirname, "public")))
