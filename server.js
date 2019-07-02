@@ -9,8 +9,9 @@ app.use(bodyParser.json())
 let {
   getAllEvents,
   deleteAllEvents,
-  createEvent
-} = require("./database_config/get_all_events.js")
+  createEvent,
+  testData
+} = require("./database_config/database_methods.js")
 
 // TODO
 // let get_event = require("./database_config/get_event.js")
@@ -34,6 +35,10 @@ app.route("/api/bands").get((req, res) => {
 
 app.route("/api/delete_all").get((req, res) => {
   deleteAllEvents(req, res)
+})
+
+app.route("/api/test").get((req, res) => {
+  testData(req, res)
 })
 
 app.use("/public", express.static(path.join(__dirname, "public")))
