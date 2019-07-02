@@ -72,27 +72,31 @@ and is wrapped around the whole page content, except for the footer in this exam
               <div class="content">
                 <form id="event_form">
                   Name<br />
-                  <input type="text" name="name" />
+                  <input id="input1" type="text" name="name" />
                   <br />
                   Support<br />
-                  <input type="text" name="support" />
+                  <input id="input2" type="text" name="support" />
                   <br />
                   City<br />
-                  <input type="text" name="city" />
+                  <input id="input3" type="text" name="city" />
                   <br />
                   Venue<br />
-                  <input type="text" name="venue" />
+                  <input id="input4" type="text" name="venue" />
                   <br />
                   Date<br />
-                  <input type="text" name="date" />
+                  <input id="input5" type="text" name="date" />
                   <br />
                   Day<br />
-                  <input type="text" name="day" />
+                  <input id="input6" type="text" name="day" />
                   <br />
                   Notes<br />
-                  <input type="text" name="notes" />
+                  <input id="input7" type="text" name="notes" />
                   <br />
-                  <input type="submit" value="Submit" />
+                  <input
+                    type="submit"
+                    value="Submit"
+                    onClick="/public/js/post_data.js"
+                  />
                 </form>
               </div>
 
@@ -186,7 +190,7 @@ and is wrapped around the whole page content, except for the footer in this exam
       <div id="data"></div>
     </footer>
     <script src="/public/js/visual.js"></script>
-    <script src="/public/js/post_data.js"></script>
+    <!-- <script src="/public/js/post_data.js"></script> -->
     <script src="/public/js/fetch_data.js"></script>
   </body>
 </html>
