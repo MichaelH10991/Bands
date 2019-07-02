@@ -1,12 +1,20 @@
 async function get_data() {
-  let res = await fetch("http://localhost:8081/api/bands")
+  let res = await fetch("http://localhost:8082/api/bands")
+  console.log(await checkStatus(res))
   let data = await res.json()
-  console.log(data)
   create_table(data)
 }
 get_data().catch(err => {
   console.log(`There was a fetch error: ${err}`)
 })
+
+function checkStatus(res) {
+  if (res.status === 200) {
+    return `200 OK`
+  } else if (res.status === 500) {
+    return `Server down!!`
+  }
+}
 
 function create_table(data) {
   // create table header
