@@ -2,6 +2,7 @@ async function get_data() {
   let res = await fetch("http://localhost:8082/api/bands")
   console.log(await checkStatus(res))
   let data = await res.json()
+  console.log(data)
   create_table(data)
 }
 get_data().catch(err => {
