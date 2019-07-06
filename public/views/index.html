@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-
+  <script src="/public/js/post_data.js"></script>
   <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -70,33 +70,37 @@ and is wrapped around the whole page content, except for the footer in this exam
                 Create New Event
               </button>
               <div class="content">
-                <form id="event_form">
-                  Name<br />
-                  <input id="input1" type="text" name="name" />
-                  <br />
-                  Support<br />
-                  <input id="input2" type="text" name="support" />
-                  <br />
-                  City<br />
-                  <input id="input3" type="text" name="city" />
-                  <br />
-                  Venue<br />
-                  <input id="input4" type="text" name="venue" />
-                  <br />
-                  Date<br />
-                  <input id="input5" type="text" name="date" />
-                  <br />
-                  Day<br />
-                  <input id="input6" type="text" name="day" />
-                  <br />
-                  Notes<br />
-                  <input id="input7" type="text" name="notes" />
-                  <br />
-                  <input
-                    type="submit"
-                    value="Submit"
-                    onClick="/public/js/post_data.js"
-                  />
+                <form id="event_form" name="event_form">
+                  <div>
+                    <label for="name">Name</label>
+                    <input id="name" type="text" name="name" />
+                  </div>
+                  <div>
+                    <label for="support">Support</label>
+                    <input id="support" type="text" name="support" />
+                  </div>
+                  <div>
+                    <label for="city">City</label>
+                    <input id="city" type="text" name="city" />
+                  </div>
+                  <div>
+                    <label for="venue">Venue</label>
+                    <input id="venue" type="text" name="venue" />
+                  </div>
+                  <div>
+                    <label for="date">Date</label>
+                    <input id="date" type="text" name="date" />
+                  </div>
+                  <div>
+                    <label for="day">Day</label>
+                    <input id="day" type="text" name="day" />
+                  </div>
+                  <div>
+                    <label for="notes">Notes</label>
+                    <input id="notes" type="text" name="notes" />
+                  </div>
+                  <input id="submitButton" type="submit" value="Submit" />
+                  <script src="/public/js/post_data.js"></script>
                 </form>
               </div>
 
@@ -190,7 +194,6 @@ and is wrapped around the whole page content, except for the footer in this exam
       <div id="data"></div>
     </footer>
     <script src="/public/js/visual.js"></script>
-    <!-- <script src="/public/js/post_data.js"></script> -->
     <script src="/public/js/fetch_data.js"></script>
   </body>
 </html>

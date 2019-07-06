@@ -10,19 +10,14 @@
 //     }
 //   })
 // })
+let formData = {}
+window.addEventListener("load", () => {
+  let form = document.getElementById("event_form")
+  console.log(form)
+  formData = new FormData(form)
+})
 
-let obj = {
-  name: document.getElementById("input1").innerHTML,
-  support: document.getElementById("input2"),
-  city: document.getElementById("input3"),
-  venue: document.getElementById("input4"),
-  date: document.getElementById("input5"),
-  day: document.getElementById("input6"),
-  notes: document.getElementById("input7")
-}
-console.log(obj)
-
-postData("http://localhost/api/create", obj)
+postData("http://localhost:8082/api/create", obj)
   .then(data => console.log(JSON.stringify(data))) // JSON-string from `response.json()` call
   .catch(error => console.error(error))
 
