@@ -68,7 +68,12 @@ and is wrapped around the whole page content, except for the footer in this exam
                 Create New Event
               </button>
               <div class="content">
-                <form id="event_form" name="event_form" method="POST" action=/api/create>
+                <form
+                  id="event_form"
+                  name="event_form"
+                  method="POST"
+                  action="/api/events"
+                >
                   <div>
                     <label for="name">Name</label>
                     <input id="name" type="text" name="name" />
