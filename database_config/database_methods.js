@@ -49,7 +49,7 @@ function createEvent(data) {
   }
   MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
     if (err) throw err
-    let dbo = db.db(database)
+    let dbo = db.db(database_name)
     dbo.collection(table).insertOne(event, (err, res) => {
       if (err) throw err
       console.log("Number of documents inserted: " + res.insertedCount)
