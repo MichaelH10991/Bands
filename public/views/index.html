@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-  <script src="/public/js/post_data.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -16,8 +16,6 @@
     rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Raleway"
   />
-
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script
     src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
     integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
@@ -70,7 +68,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                 Create New Event
               </button>
               <div class="content">
-                <form id="event_form" name="event_form">
+                <form id="event_form" name="event_form" method="POST" action=/api/create>
                   <div>
                     <label for="name">Name</label>
                     <input id="name" type="text" name="name" />
@@ -99,8 +97,9 @@ and is wrapped around the whole page content, except for the footer in this exam
                     <label for="notes">Notes</label>
                     <input id="notes" type="text" name="notes" />
                   </div>
-                  <input id="submitButton" type="submit" value="Submit" />
-                  <script src="/public/js/post_data.js"></script>
+                  <button id="submitButton" type="submit" value="Submit">
+                    Submit
+                  </button>
                 </form>
               </div>
 
@@ -193,6 +192,7 @@ and is wrapped around the whole page content, except for the footer in this exam
       </p>
       <div id="data"></div>
     </footer>
+    <script src="/public/js/post_data.js"></script>
     <script src="/public/js/visual.js"></script>
     <script src="/public/js/fetch_data.js"></script>
   </body>
