@@ -3,7 +3,7 @@ let MongoClient = require("mongodb").MongoClient
 
 let root_url = config.database_url
 let database = config.database_name
-let col = config.collection_name
+let collectionName = config.collection_name
 // must first create a MongoClient object and specify a connection URL with the correct ip address of the database.
 // mongoDB will create a database of it does not exist and creata conneciton to it
 let url = `${root_url}${database}`
@@ -20,9 +20,9 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
 MongoClient.connect(url, { useNewUrlParser: true }, (err, db) => {
   if (err) throw err
   let dbo = db.db(database)
-  dbo.createCollection(col, (err, res) => {
+  dbo.createCollection(collectionName, (err, res) => {
     if (err) throw err
-    console.log(`collection: ${col}, created!`)
+    console.log(`collection: ${collectionName}, created!`)
     db.close()
   })
 })
