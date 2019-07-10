@@ -23,7 +23,14 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/views/index.html"))
 })
 
-app.post("/api/create", (req, res) => {
+// app.post("/api/create", (req, res) => {
+//   console.log(req.body)
+
+//   createEvent(req.body)
+// })
+
+app.route("/api/create").post((req, res) => {
+  console.log("hit")
   console.log(req.body)
 
   createEvent(req.body)
