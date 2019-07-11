@@ -1,5 +1,17 @@
 const express = require("express")
+const mongoose = require("mongoose")
 const router = express.Router()
+
+const controller = require("./events.controller")
+
+mongoose.Promise = global.Promise
+mongoose.connect(`mongodb://localhost/bandsDB`, {
+  useNewUrlParser: true
+})
+
+let db = mongoose.connection
+
+db.on("error", console.error.bind(console, "connection error: "))
 
 let {
   getAllEvents,
@@ -26,14 +38,11 @@ let {
  *
  *  */
 
-router.get("/", (req, res) => {
-  getAllEvents(req, res)
+router.get("/", controller.index)
+router.delete("/", controller.nuke)
+router.post("/", controller.submit)
+
+router.delete("/", (req, res) => {
+  console.log("delete")
 })
-
-router.post("/", (req, res) => {
-  console.log(req.body)
-
-  createEvent(req.body)
-})
-
 module.exports = router
