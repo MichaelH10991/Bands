@@ -3,7 +3,7 @@ let MongoClient = require("mongodb").MongoClient
 let environment = require("dotenv").config()
 
 // database config
-let url = config.database_url + process.env.DB_NAME
+let url = config.database_url + "bandsDB"
 let database_name = config.database_name
 let table = config.collection_name
 
