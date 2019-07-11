@@ -7,7 +7,7 @@ let eventSchema = new Schema({
   support: String,
   city: String,
   venue: String,
-  date: String,
+  date: Date,
   day: String,
   notes: String
 })
