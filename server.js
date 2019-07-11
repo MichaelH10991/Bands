@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 // set route for static folder
 app.use("/public", express.static(path.join(__dirname, "public")))
 
-// events API route
+// events API route middleware
 app.use("/api/events", require("./routes/api/events"))
 
 app.listen(PORT, () => console.log(`server listening on port: ${PORT}`))
