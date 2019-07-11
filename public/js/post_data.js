@@ -13,9 +13,26 @@
 //   })
 // })
 
-$(document).ready(function() {
-  $("#event_form").on("submit", function() {
-    location.reload(true)
+$(document).ready(() => {
+  $("#eventForm").on("submit", () => {
+    location.reload()
+  })
+})
+
+$(document).ready(() => {
+  $("#deleteButton").click(() => {
+    $.ajax({
+      type: "DELETE",
+      url: "/api/events",
+      success: response => {
+        if (response == "error") {
+          console.error(`there was an error ${response}`)
+        } else {
+          alert("Data nuked!")
+          location.reload()
+        }
+      }
+    })
   })
 })
 
