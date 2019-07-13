@@ -14,12 +14,6 @@
 // })
 
 $(document).ready(() => {
-  $("#eventForm").on("submit", () => {
-    location.reload()
-  })
-})
-
-$(document).ready(() => {
   $("#deleteButton").click(() => {
     $.ajax({
       type: "DELETE",
@@ -31,6 +25,13 @@ $(document).ready(() => {
           alert("Data nuked!")
           location.reload()
         }
+      }
+    })
+  })
+  $("#submitButton").click(() => {
+    $.ajax({
+      success: () => {
+        location.reload()
       }
     })
   })
