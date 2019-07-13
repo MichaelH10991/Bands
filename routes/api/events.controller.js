@@ -21,8 +21,9 @@ exports.submit = (req, res) => {
 }
 
 // get a single event
-exports.show = (req, res) => {
-  Event.findById(req.params.id, (err, Event) => {
+exports.collect = (req, res) => {
+  // console.log(req.params)
+  Event.find({ name: req.params.name }, (err, Event) => {
     if (err) return handleError(res, err)
     if (!Event) return res.send(404)
     return res.send(Event)
@@ -39,5 +40,5 @@ exports.nuke = (req, res) => {
 
 // handle the errors
 function handleError(res, err) {
-  return res.send(500, err)
+  return res.status(500).send(err)
 }

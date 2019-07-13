@@ -1,2 +1,2 @@
 #!bin/bash
-mongod & nodemon ../server.js
+mongod && nodemon ../server.js

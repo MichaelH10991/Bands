@@ -17,7 +17,8 @@ db.on("error", console.error.bind(console, "connection error: "))
  *  */
 
 router.get("/", controller.index)
-router.get("/:name", controller.show)
+router.get("/:name", controller.collect)
+router.get("/:date")
 router.delete("/", controller.nuke)
 router.post("/", controller.submit)
 
