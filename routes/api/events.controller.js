@@ -1,4 +1,4 @@
-var Event = require("./events.model")
+let Event = require("./events.model")
 
 // Get list of all events
 exports.index = (req, res) => {
@@ -9,25 +9,34 @@ exports.index = (req, res) => {
     return res.status(200).json(events)
   })
 }
-// nuke the database
-exports.nuke = (req, res) => {
-  Event.deleteMany({}, err => {
-    if (err) {
-      return handlerError(res, err)
-    }
-    return res.status(200).send(`data nuked!`)
-  })
-}
+
 // submit an event
 exports.submit = (req, res) => {
   let eventData = new Event(req.body)
-  eventData
-    .save()
-    .then(item => {
-      console.log(`saved to database: ${item}`)
-    })
-    .catch(err => console.error(`unable to send item: ${err}`))
+  eventData.save(err => {
+    if (err) return handleError(res, err)
+    console.log("returning...")
+    return res.status(200)
+  })
 }
+
+// get a single event
+exports.show = (req, res) => {
+  Event.findById(req.params.id, (err, Event) => {
+    if (err) return handleError(res, err)
+    if (!Event) return res.send(404)
+    return res.send(Event)
+  })
+}
+
+// nuke the database
+exports.nuke = (req, res) => {
+  Event.deleteMany({}, err => {
+    if (err) return handlerError(res, err)
+    return res.status(200).send(`data nuked!`)
+  })
+}
+
 // handle the errors
 function handleError(res, err) {
   return res.send(500, err)
