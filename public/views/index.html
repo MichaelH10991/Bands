@@ -61,7 +61,7 @@ and is wrapped around the whole page content, except for the footer in this exam
                 Here is a historic table of the bands that I have seen.
               </p>
               <div id="table-container">
-                <table id="data_table" border="1"></table>
+                <table id="data_table"></table>
               </div>
 
               <button class="collapsible button-margin">
@@ -74,38 +74,75 @@ and is wrapped around the whole page content, except for the footer in this exam
                   method="POST"
                   action="/api/events"
                 >
-                  <div>
-                    <label for="name">Name</label>
-                    <input id="name" type="text" name="name" required />
-                  </div>
-                  <div>
-                    <label for="support">Support</label>
-                    <input id="support" type="text" name="support" required />
-                  </div>
-                  <div>
-                    <label for="city">City</label>
-                    <input id="city" type="text" name="city" required />
-                  </div>
-                  <div>
-                    <label for="venue">Venue</label>
-                    <input id="venue" type="text" name="venue" required />
-                  </div>
-                  <div>
-                    <label for="date">Date</label>
-                    <input id="date" type="text" name="date" required />
-                  </div>
-                  <div>
-                    <label for="day">Day</label>
-                    <input id="day" type="text" name="day" required />
-                  </div>
-                  <div>
-                    <label for="notes">Notes</label>
-                    <input id="notes" type="text" name="notes" required />
-                  </div>
+                  <table class="input-table" style="border: 0;">
+                    <tr>
+                      <td>
+                        <label for="name">Name</label>
+                      </td>
+                      <td>
+                        <input id="name" type="text" name="name" required />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="support">Support</label>
+                      </td>
+                      <td>
+                        <input
+                          id="support"
+                          type="text"
+                          name="support"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="city">City</label>
+                      </td>
+                      <td>
+                        <input id="city" type="text" name="city" required />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="venue">Venue</label>
+                      </td>
+                      <td>
+                        <input id="venue" type="text" name="venue" required />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="date">Date</label>
+                      </td>
+                      <td>
+                        <input id="date" type="text" name="date" required />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="day">Day</label>
+                      </td>
+                      <td>
+                        <input id="day" type="text" name="day" required />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="notes">Notes</label>
+                      </td>
+                      <td>
+                        <input id="notes" type="text" name="notes" required />
+                      </td>
+                    </tr>
+                  </table>
+
                   <button id="submitButton" type="submit" value="Submit">
                     Submit
                   </button>
                 </form>
+
                 <button id="deleteButton" type="submit" value="Submit">
                   Delete All
                 </button>

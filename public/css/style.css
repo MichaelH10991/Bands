@@ -42,3 +42,8 @@ td {
 .button-margin {
   margin-top: 20px;
 }
+
+.input-table td {
+  padding: 5px;
+  border: 0px;
+}
