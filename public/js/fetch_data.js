@@ -1,13 +1,62 @@
 async function get_data() {
   let res = await fetch("http://localhost:8082/api/events")
   let data = await res.json()
-  await create_table(data)
+  await create_table(data, "data_table", "table-container")
 }
 get_data().catch(err => {
   console.log(`There was a fetch error: ${err}`)
 })
 
-function create_table(data) {
+async function getAnEvent(name) {
+  let res = await fetch(`http://localhost:8082/api/events/${name.value}`)
+  let data = await res.json()
+  writeToDocument(data)
+}
+
+function writeToDocument(data) {
+  let anchor = document.getElementById("data")
+  // destroy all child elements
+  while (anchor.firstChild) {
+    anchor.removeChild(anchor.firstChild)
+  }
+  // create
+  for (i = 0; i < data.length; i++) {
+    anchor.appendChild(createCard(data[i], anchor))
+  }
+}
+
+function createCard(data) {
+  let name = data.name,
+    support = data.support,
+    city = data.city,
+    venue = data.venue,
+    date = data.date,
+    day = data.day,
+    notes = data.notes
+
+  // card element
+  let card = document.createElement("div")
+  card.className = "w3-card-4 w3-margin w3-white"
+
+  // container element
+  let container = document.createElement("div")
+  let heading = document.createElement("h3")
+  let content = document.createElement("p")
+
+  heading.textContent = data.name
+  content.textContent = `${name} played at ${venue} on ${day}, ${date}. Supported by ${support} in ${city}. Here are some notes: ${notes}`
+  container.className = "w3-container"
+
+  container.appendChild(heading)
+  container.appendChild(content)
+
+  card.appendChild(container)
+
+  // returns the element
+  return card
+}
+
+function create_table(data, tableName, cont) {
   // create table header
   let cols = ["Name", "Support", "City", "Venue", "Date", "Day", "Notes"]
   let keys = []
@@ -20,7 +69,7 @@ function create_table(data) {
   }
 
   // get table from DOM
-  let table = document.getElementById("data_table")
+  let table = document.getElementById(tableName)
 
   // create html table header row using the extracted headers above
 
@@ -43,7 +92,7 @@ function create_table(data) {
   }
 
   // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-  let divContainer = document.getElementById("table-container")
+  let divContainer = document.getElementById(cont)
   divContainer.innerHTML = ""
   divContainer.appendChild(table)
 }
