@@ -15,7 +15,6 @@ exports.submit = (req, res) => {
   let eventData = new Event(req.body)
   eventData.save(err => {
     if (err) return handleError(res, err)
-    console.log("returning...")
     return res.status(200)
   })
 }
