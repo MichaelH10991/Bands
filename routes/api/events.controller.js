@@ -7,7 +7,7 @@ exports.index = (req, res) => {
       return handleError(res, err)
     }
     return res.status(200).json(events)
-  })
+  }).sort({ date: 1 })
 }
 
 // submit an event
