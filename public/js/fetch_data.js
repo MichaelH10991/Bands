@@ -25,29 +25,42 @@ function writeToDocument(data) {
   }
 }
 
+function normalizeDate(date){
+  date = date.split("T")
+  return date[0]
+}
+
 function createCard(data) {
   let name = data.name,
     support = data.support,
     city = data.city,
     venue = data.venue,
-    date = data.date,
+    date = normalizeDate(data.date),
     day = data.day,
     notes = data.notes
 
-  // card element
+  // card element`
   let card = document.createElement("div")
   card.className = "w3-card-4 w3-margin w3-white"
 
   // container element
   let container = document.createElement("div")
+  container.className = "w3-container"
+
   let heading = document.createElement("h3")
+
+  let tag = document.createElement("span")
+  tag.className = "w3-tag tag1"
+
   let content = document.createElement("p")
 
   heading.textContent = data.name
+  tag.textContent = date
   content.textContent = `${name} played at ${venue} on ${day}, ${date}. Supported by ${support} in ${city}. Here are some notes: ${notes}`
-  container.className = "w3-container"
+  
 
   container.appendChild(heading)
+  heading.appendChild(tag)
   container.appendChild(content)
 
   card.appendChild(container)
@@ -72,7 +85,6 @@ function create_table(data, tableName, cont) {
   let table = document.getElementById(tableName)
 
   // create html table header row using the extracted headers above
-
   let tr = table.insertRow(-1)
 
   for (let i = 0; i < cols.length; i++) {
@@ -81,17 +93,17 @@ function create_table(data, tableName, cont) {
     tr.appendChild(th)
   }
 
-  // ADD JSON DATA TO THE TABLE AS ROWS.
+  // add json data to the table as rows
   for (let i = 0; i < data.length; i++) {
+    data[i].date = normalizeDate(data[i].date)
     tr = table.insertRow(-1)
-
     for (let j = 1; j < keys.length - 1; j++) {
       let tabCell = tr.insertCell(-1)
       tabCell.innerHTML = data[i][keys[j]]
     }
   }
 
-  // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+  // finnally add the newly created table with the json data to a container
   let divContainer = document.getElementById(cont)
   divContainer.innerHTML = ""
   divContainer.appendChild(table)
