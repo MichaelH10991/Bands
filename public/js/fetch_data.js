@@ -30,14 +30,8 @@ function normalizeDate(date){
   return date[0]
 }
 
-function createCard(data) {
-  let name = data.name,
-    support = data.support,
-    city = data.city,
-    venue = data.venue,
-    date = normalizeDate(data.date),
-    day = data.day,
-    notes = data.notes
+function createCard({name, support, city, venue, date, day, notes}) {
+  date = normalizeDate(date)
 
   // card element`
   let card = document.createElement("div")
@@ -54,9 +48,11 @@ function createCard(data) {
 
   let content = document.createElement("p")
 
-  heading.textContent = data.name
+  heading.textContent = name
   tag.textContent = date
-  content.textContent = `${name} played at ${venue} on ${day}, ${date}. Supported by ${support} in ${city}. Here are some notes: ${notes}`
+  content.textContent = `${name} played at ${venue}, 
+  ${city} on ${day}, ${date}. Supported by 
+  ${support}. Here are some notes: ${notes}`
   
 
   container.appendChild(heading)
