@@ -25,12 +25,12 @@ function writeToDocument(data) {
   }
 }
 
-function normalizeDate(date){
+function normalizeDate(date) {
   date = date.split("T")
   return date[0]
 }
 
-function createCard({name, support, city, venue, date, day, notes}) {
+function createCard({ name, support, city, venue, date, day, notes }) {
   date = normalizeDate(date)
 
   // card element`
@@ -53,7 +53,6 @@ function createCard({name, support, city, venue, date, day, notes}) {
   content.textContent = `${name} played at ${venue}, 
   ${city} on ${day}, ${date}. Supported by 
   ${support}. Here are some notes: ${notes}`
-  
 
   container.appendChild(heading)
   heading.appendChild(tag)

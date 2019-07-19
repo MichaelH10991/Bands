@@ -29,8 +29,10 @@ exports.collect = (req, res) => {
   })
 }
 
-exports.update = ({body}, res) => {
-  if(body.id){delete body.id}
+exports.update = ({ body }, res) => {
+  if (body.id) {
+    delete body.id
+  }
 }
 
 // nuke the database
