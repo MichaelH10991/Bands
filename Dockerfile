@@ -1,6 +1,6 @@
 # https://nodejs.org/de/docs/guides/nodejs-docker-webapp/
 
-From node:10
+FROM node:10
 
 WORKDIR /usr/src/app
 
@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 8082
 
 CMD [ "node", "server.js" ]
 
