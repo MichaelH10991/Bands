@@ -1,6 +1,6 @@
 # https://nodejs.org/de/docs/guides/nodejs-docker-webapp/
 
-FROMexp node:10
+FROM node:10
 
 WORKDIR /usr/src/app
 

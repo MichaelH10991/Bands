@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const router = express.Router()
 const controller = require("./events.controller")
+
 mongoose.Promise = global.Promise
 mongoose.connect(`mongodb://localhost/bandsDB`, {
   useNewUrlParser: true
