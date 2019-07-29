@@ -1,5 +1,5 @@
 async function get_data() {
-  let res = await fetch("http://localhost:8082/api/events")
+  let res = await fetch("/api/events")
   let data = await res.json()
   await create_table(data, "data_table", "table-container")
 }
@@ -8,7 +8,7 @@ get_data().catch(err => {
 })
 
 async function getAnEvent(name) {
-  let res = await fetch(`http://localhost:8082/api/events/${name.value}`)
+  let res = await fetch(`/api/events/${name.value}`)
   let data = await res.json()
   writeToDocument(data)
 }
