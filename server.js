@@ -12,6 +12,7 @@ const PORT = process.env.PORT || process.env.SERVER_PORT
 
 // Connect to the database
 dbConnection.on("error", console.error.bind(console, "connection error: "))
+// dbConnection.once("open", () => { console.log("Connected to Database!"); databaseConnection = "Connected to Database"; });
 
 // route for index page
 app.get("/", (req, res) => {

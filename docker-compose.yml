@@ -8,6 +8,8 @@ services:
       - "8082:8082"
     links: 
       - mongo
+    networks:
+      - webappnetwork
   mongo:
     container_name: mongo
     image: mongo
