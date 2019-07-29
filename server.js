@@ -1,5 +1,6 @@
 let express = require("express")
 let environment = require("dotenv").config()
+let dbConnection = require("./db/db.connection")
 let path = require("path")
 let app = express()
 let bodyParser = require("body-parser")
@@ -8,6 +9,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const PORT = process.env.PORT || process.env.SERVER_PORT
+
+// Connect to the database
+dbConnection.on("error", console.error.bind(console, "connection error: "))
 
 // route for index page
 app.get("/", (req, res) => {
