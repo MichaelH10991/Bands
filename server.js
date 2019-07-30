@@ -1,18 +1,36 @@
 let express = require("express")
 let environment = require("dotenv").config()
-let dbConnection = require("./db/db.connection")
 let path = require("path")
 let app = express()
 let bodyParser = require("body-parser")
-let test_data = require("./routes/api/test_data")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+let db = require("./db/db.connection")
+
+db.on('connected', () => {
+  console.log('database connection established')
+})
+
+db.once('open', () => {
+  console.log(`database conneciton open`)
+})
+
+db.on('disconnected', () => {
+  console.log("Mongoose default connection is disconnected")
+})
+
+db.on("error", (err) => {
+  console.log(`connection error: ${err}`)
+})
+
+process.on('SIGINT', () => {
+  db.close(() => {
+    console.log(termination("Mongoose default connection is disconnected due to application termination"))
+    process.exit(0)
+  })
+})
 
 const PORT = process.env.PORT || process.env.SERVER_PORT
-
-// Connect to the database
-dbConnection.on("error", console.error.bind(console, "connection error: "))
-// dbConnection.once("open", () => { console.log("Connected to Database!"); databaseConnection = "Connected to Database"; });
 
 // route for index page
 app.get("/", (req, res) => {
@@ -22,11 +40,8 @@ app.get("/", (req, res) => {
 // set route for static folder
 app.use("/public", express.static(path.join(__dirname, "public")))
 
-// events API route middleware
+// Middleware
 app.use("/api/events", require("./routes/api/events"))
 
-app.get("/api/test_data", (req, res) => {
-  res.send(test_data)
-})
-
+// listen on port
 app.listen(PORT, () => console.log(`server listening on port: ${PORT}`))

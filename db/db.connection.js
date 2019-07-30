@@ -1,8 +1,10 @@
 let mongoose = require("mongoose")
-mongoose.Promise = global.Promise
-mongoose.connect(`mongodb://localhost/bandsDB`, {
+let database = `mongodb://localhost/bandsDB`
+
+mongoose.connect(database, {
   useNewUrlParser: true
 })
+
 let db = mongoose.connection
 
 module.exports = db
