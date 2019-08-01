@@ -1,8 +1,8 @@
-let Event = require("./events.model")
+let Event = require("../../models/events.model")
 
 // Get list of all events
 exports.index = (req, res) => {
-  Event.find(function(err, events) {
+  Event.find(function (err, events) {
     if (err) {
       return handleError(res, err)
     }

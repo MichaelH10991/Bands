@@ -8,11 +8,11 @@ app.use(bodyParser.json())
 let db = require("./db/db.connection")
 
 db.on('connected', () => {
-  console.log('database connection established')
+  console.log('Database connection established')
 })
 
 db.once('open', () => {
-  console.log(`database conneciton open`)
+  console.log(`Database connection open`)
 })
 
 db.on('disconnected', () => {
@@ -20,7 +20,7 @@ db.on('disconnected', () => {
 })
 
 db.on("error", (err) => {
-  console.log(`connection error: ${err}`)
+  console.log(`Connection error: ${err}`)
 })
 
 process.on('SIGINT', () => {
