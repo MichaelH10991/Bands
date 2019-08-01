@@ -9,15 +9,11 @@ let mongooseOptions = {
   useNewUrlParser: true
 };
 
-mongoose.connect(database, mongooseOptions).then(
-  () => {
-    console.log(`connection to ${database}`)
-  }, err => {
-    //*** put timeout here ?? */
-    // logger.error('mongodb first connection failed: ' + err.stack)
-    console.log(`first connection to the database failed: ${err}`)
-    // process.exit(0)
-  }
-)
+mongoose
+  .connect(database, mongooseOptions)
+  .then(() => console.log(`connection to ${database}`))
+  .catch(err => console.log(`first connection to the database failed: ${err}`))
+
+let db = mongoose.connection
 
 db = module.exports = mongoose.connection
