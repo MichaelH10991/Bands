@@ -1,273 +1,228 @@
 <!DOCTYPE html>
 <html>
-  <title>Bands</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
-    crossorigin="anonymous"
-  />
-  <link rel="stylesheet" href="/public/css/style.css" />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Raleway"
-  />
-  <script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-    crossorigin="anonymous"
-  ></script>
-  <style>
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      font-family: "Raleway", sans-serif;
-    }
-  </style>
-  <body class="w3-light-grey">
-    <!-- w3-content defines a container for fixed size centered content, 
+<title>Bands</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+  integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous" />
+<link rel="stylesheet" href="/public/css/style.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+  integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+<style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Raleway", sans-serif;
+  }
+</style>
+
+<body class="w3-light-grey">
+  <!-- w3-content defines a container for fixed size centered content, 
 and is wrapped around the whole page content, except for the footer in this example -->
-    <div class="w3-content" style="max-width:1400px">
-      <!-- Header -->
-      <header class="w3-container w3-center w3-padding-32">
-        <h1>
-          <b>Bands</b>
-        </h1>
-        <p>by <span class="w3-tag">Mike</span></p>
-      </header>
+  <div class="w3-content" style="max-width:1400px">
+    <!-- Header -->
+    <header class="w3-container w3-center w3-padding-32">
+      <h1>
+        <b>Bands</b>
+      </h1>
+      <!-- <p>by <span class="w3-tag">Mike</span></p> -->
+    </header>
 
-      <!-- Grid -->
-      <div class="w3-row">
-        <!-- Blog entries -->
-        <div class="w3-col l12 s12">
-          <div class="w3-card-4 w3-margin w3-white">
-            <div class="w3-container">
-              <input
-                id="searchName"
-                type="text"
-                class="search-bar w3-col s10"
-              />
-              <span>
-                <button
-                  type="submit"
-                  class="search-bar"
-                  onClick="getAnEvent(searchName)"
-                >
-                  Search
-                </button>
-              </span>
-            </div>
-          </div>
-
-          <div id="data"></div>
-
-          <!-- Blog entry -->
-          <div class="w3-card-4 w3-margin w3-white">
-            <!--<img src="" alt="Nature" style="width:100%">-->
-            <div class="w3-container">
-              <h3><b>Bands I've seen</b></h3>
-              <!--<h5>A list of bands we've seen <h5>-->
-              <h6 class="w3-opacity">Latest revision: April, 2019</h6>
-            </div>
-
-            <div class="w3-container">
-              <p>
-                Here is a historic table of the bands that I have seen.
-              </p>
-              <div id="table-container">
-                <table id="data_table"></table>
-              </div>
-
-              <button class="collapsible button-margin">
-                Create New Event
+    <!-- Grid -->
+    <div class="w3-row">
+      <!-- Blog entries -->
+      <div class="w3-col l12 s12">
+        <div class="w3-card-4 w3-margin w3-white">
+          <div class="w3-container">
+            <input id="searchName" type="text" class="search-bar w3-col s10" />
+            <span>
+              <button type="submit" class="search-bar" onClick="getAnEvent(searchName)">
+                Search
               </button>
-              <div class="content">
-                <form
-                  id="eventForm"
-                  name="event_form"
-                  method="POST"
-                  action="/api/events"
-                >
-                  <table class="input-table" style="border: 0;">
-                    <tr>
-                      <td>
-                        <label for="name">Name</label>
-                      </td>
-                      <td>
-                        <input id="name" type="text" name="name" required />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="support">Support</label>
-                      </td>
-                      <td>
-                        <input
-                          id="support"
-                          type="text"
-                          name="support"
-                          required
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="city">City</label>
-                      </td>
-                      <td>
-                        <input id="city" type="text" name="city" required />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="venue">Venue</label>
-                      </td>
-                      <td>
-                        <input id="venue" type="text" name="venue" required />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="date">Date</label>
-                      </td>
-                      <td>
-                        <input id="date" type="text" name="date" required />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="day">Day</label>
-                      </td>
-                      <td>
-                        <input id="day" type="text" name="day" required />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label for="notes">Notes</label>
-                      </td>
-                      <td>
-                        <!-- <input id="notes" type="text" name="notes" required /> -->
-                        <textarea
-                          id="notes"
-                          type="text"
-                          name="notes"
-                          required
-                          rows="4"
-                          cols="50"
-                        ></textarea>
-                      </td>
-                    </tr>
-                  </table>
-
-                  <button id="submitButton" type="submit" value="Submit">
-                    Submit
-                  </button>
-                </form>
-
-                <button id="deleteButton" type="submit" value="Submit">
-                  Delete All
-                </button>
-              </div>
-
-              <div class="w3-row">
-                <div class="w3-col m8 s12">
-                  <p>
-                    <button
-                      class="w3-button w3-padding-large w3-white w3-border button-margin"
-                    >
-                      <b>Download Table</b>
-                    </button>
-                  </p>
-                </div>
-                <div class="w3-col m4 w3-hide-small">
-                  <p>
-                    <span class="w3-padding-large w3-right"
-                      ><b>Comments </b> <span class="w3-tag">0</span></span
-                    >
-                  </p>
-                </div>
-              </div>
-            </div>
+            </span>
           </div>
-          <!-- <hr /> -->
-
-          <!-- Blog entry -->
-          <div class="w3-card-4 w3-margin w3-white" style="display: none;">
-            <img src="" alt="Norway" style="width:100%" />
-            <div class="w3-container">
-              <h3><b>BLOG ENTRY</b></h3>
-              <h5>
-                Title description, <span class="w3-opacity">April 2, 2014</span>
-              </h5>
-            </div>
-
-            <div class="w3-container">
-              <p>
-                Mauris neque quam, fermentum ut nisl vitae, convallis maximus
-                nisl. Sed mattis nunc id lorem euismod placerat. Vivamus
-                porttitor magna enim, ac accumsan tortor cursus at. Phasellus
-                sed ultricies mi non congue ullam corper. Praesent tincidunt sed
-                tellus ut rutrum. Sed vitae justo condimentum, porta lectus
-                vitae, ultricies congue gravida diam non fringilla.
-              </p>
-
-              <div class="w3-row">
-                <div class="w3-col m8 s12">
-                  <p>
-                    <button
-                      class="w3-button w3-padding-large w3-white w3-border"
-                    >
-                      <b>READ MORE »</b>
-                    </button>
-                  </p>
-                </div>
-                <div class="w3-col m4 w3-hide-small">
-                  <p>
-                    <span class="w3-padding-large w3-right"
-                      ><b>Comments </b> <span class="w3-badge">2</span></span
-                    >
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- END BLOG ENTRIES -->
         </div>
 
-        <!-- END GRID -->
+        <div id="data"></div>
+
+        <!-- Blog entry -->
+        <div class="w3-card-4 w3-margin w3-white">
+          <!--<img src="" alt="Nature" style="width:100%">-->
+          <div class="w3-container">
+            <h3><b>Bands I've seen</b></h3>
+            <!--<h5>A list of bands we've seen <h5>-->
+            <h6 class="w3-opacity">Latest revision: April, 2019</h6>
+          </div>
+
+          <div class="w3-container">
+            <p>
+              Here is a historic table of the bands that I have seen.
+            </p>
+            <div id="table-container">
+              <table id="data_table"></table>
+            </div>
+
+            <button class="collapsible button-margin">
+              Create New Event
+            </button>
+            <div class="content">
+              <form id="eventForm" name="event_form" method="POST" action="/api/events">
+                <table class="input-table" style="border: 0;">
+                  <tr>
+                    <td>
+                      <label for="name">Name</label>
+                    </td>
+                    <td>
+                      <input id="name" type="text" name="name" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="support">Support</label>
+                    </td>
+                    <td>
+                      <input id="support" type="text" name="support" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="city">City</label>
+                    </td>
+                    <td>
+                      <input id="city" type="text" name="city" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="venue">Venue</label>
+                    </td>
+                    <td>
+                      <input id="venue" type="text" name="venue" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="date">Date</label>
+                    </td>
+                    <td>
+                      <input id="date" type="text" name="date" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="day">Day</label>
+                    </td>
+                    <td>
+                      <input id="day" type="text" name="day" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="notes">Notes</label>
+                    </td>
+                    <td>
+                      <!-- <input id="notes" type="text" name="notes" required /> -->
+                      <textarea id="notes" type="text" name="notes" required rows="4" cols="50"></textarea>
+                    </td>
+                  </tr>
+                </table>
+
+                <button id="submitButton" type="submit" value="Submit">
+                  Submit
+                </button>
+              </form>
+
+              <button id="deleteButton" type="submit" value="Submit">
+                Delete All
+              </button>
+            </div>
+
+            <div class="w3-row">
+              <div class="w3-col m8 s12">
+                <p>
+                  <button class="w3-button w3-padding-large w3-white w3-border button-margin">
+                    <b>Download Table</b>
+                  </button>
+                </p>
+              </div>
+              <div class="w3-col m4 w3-hide-small">
+                <p>
+                  <span class="w3-padding-large w3-right"><b>Comments </b> <span class="w3-tag">0</span></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <hr /> -->
+
+        <!-- Blog entry -->
+        <div class="w3-card-4 w3-margin w3-white" style="display: none;">
+          <img src="" alt="Norway" style="width:100%" />
+          <div class="w3-container">
+            <h3><b>BLOG ENTRY</b></h3>
+            <h5>
+              Title description, <span class="w3-opacity">April 2, 2014</span>
+            </h5>
+          </div>
+
+          <div class="w3-container">
+            <p>
+              Mauris neque quam, fermentum ut nisl vitae, convallis maximus
+              nisl. Sed mattis nunc id lorem euismod placerat. Vivamus
+              porttitor magna enim, ac accumsan tortor cursus at. Phasellus
+              sed ultricies mi non congue ullam corper. Praesent tincidunt sed
+              tellus ut rutrum. Sed vitae justo condimentum, porta lectus
+              vitae, ultricies congue gravida diam non fringilla.
+            </p>
+
+            <div class="w3-row">
+              <div class="w3-col m8 s12">
+                <p>
+                  <button class="w3-button w3-padding-large w3-white w3-border">
+                    <b>READ MORE »</b>
+                  </button>
+                </p>
+              </div>
+              <div class="w3-col m4 w3-hide-small">
+                <p>
+                  <span class="w3-padding-large w3-right"><b>Comments </b> <span class="w3-badge">2</span></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END BLOG ENTRIES -->
       </div>
-      <br />
 
-      <!-- END w3-content -->
+      <!-- END GRID -->
     </div>
+    <br />
 
-    <!-- Footer -->
-    <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
-      <button
-        class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom"
-      >
-        Previous
-      </button>
-      <button class="w3-button w3-black w3-padding-large w3-margin-bottom">
-        Next »
-      </button>
-      <p>
-        See the
-        <a href="https://github.com/MichaelH10991/Bands" target="_blank"
-          >code!</a
-        >
-      </p>
-    </footer>
-    <script src="/public/js/post_data.js"></script>
-    <script src="/public/js/visual.js"></script>
-    <script src="/public/js/fetch_data.js"></script>
-  </body>
+    <!-- END w3-content -->
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">
+      Previous
+    </button>
+    <button class="w3-button w3-black w3-padding-large w3-margin-bottom">
+      Next »
+    </button>
+    <p>
+      See the
+      <a href="https://github.com/MichaelH10991/Bands" target="_blank">code!</a>
+    </p>
+  </footer>
+  <script src="/public/js/post_data.js"></script>
+  <script src="/public/js/visual.js"></script>
+  <script src="/public/js/fetch_data.js"></script>
+</body>
+
 </html>
