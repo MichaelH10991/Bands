@@ -1,24 +1,19 @@
 # Bands I have seen
 
-This idea kind of started as something I could bring together for me and my friends. We were slowly forgetting what bands we had seen, where we had seen them and when. So I came up with this website, a place thats not difficult to get to, one that loads quickly and doesn't require any downloading of excel spreadsheets or uploading of any stuff to some sharepoint.
-
-This site is limited in functionality but the concept is there, it is also a platform for me to mess about with ideas and general coding stuff so dont take it seriously.
-
-If you want to mess about with it yourself, tear it down and laugh at my mistakes... go ahead... here's how to do it;
+This project is mostly a learning thing and a place to practice and break things whilst also being a functional solution to a relatively mundaine problem.
 
 # Steps
 
-- `git clone the repo`
+- `git clone git@github.com:MichaelH10991/Bands.git`
 - `npm install`
 
-To run the application on its own, run;
+To run the application in development mode, run;
 
-- `nodemon server.js`
-  > (use nodemon to run the server if you're going to be changing stuff)
+- `npm run dev`
 
-To run the application with the database, run;
+then run the database
 
-- `sh ./utils/start.sh`
+- `mongod`
 
 ## Set up mongoDB
 
@@ -39,4 +34,4 @@ module.exports = {
 - `node create_database.js`
 - `node test_data.js`
 
-Enjoy
+blah blah
