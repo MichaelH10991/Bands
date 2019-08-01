@@ -1,5 +1,7 @@
-let mongoose = require("mongoose")
-let database = `mongodb://localhost/bandsDB`
+const mongoose = require("mongoose")
+const config = require('./db.config');
+const database = config.database
+const secret = config.secret
 
 let mongooseOptions = {
   reconnectInterval: 500,
@@ -8,17 +10,14 @@ let mongooseOptions = {
 };
 
 mongoose.connect(database, mongooseOptions).then(
-  mongoose => {
-    let { name, host, port } = mongoose.connections[0]
-    console.log(`connection to mongoDB/${host}:${port}/${name}`)
+  () => {
+    console.log(`connection to ${database}`)
   }, err => {
-    //*** put timeoute here ?? */
+    //*** put timeout here ?? */
     // logger.error('mongodb first connection failed: ' + err.stack)
     console.log(`first connection to the database failed: ${err}`)
     // process.exit(0)
   }
 )
-
-// let db = mongoose.connection
 
 db = module.exports = mongoose.connection
