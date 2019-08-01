@@ -10,12 +10,20 @@ services:
       - mongo
     networks:
       - webappnetwork
+  # api:
+  #   container_name: api
+  #   restart: always
+  #   build: routes
+  #   ports: 
+  #     - 8083:8083
+  #   links:
+  #     - app
   mongo:
     container_name: mongo
     image: mongo
     restart: always
     volumes:
-      - ./data:/data/db
+      - ./data:/data/bandDB
     ports:
       - "27017:27017"
     command: mongod --noauth --smallfiles
