@@ -35,7 +35,7 @@ function createCard({ name, support, city, venue, date, day, notes }) {
 
   // card element`
   let card = document.createElement("div")
-  card.className = "w3-card-4 w3-margin w3-white"
+  card.className = "w3-card-4 .center-content w3-white"
 
   // container element
   let container = document.createElement("div")
