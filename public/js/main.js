@@ -35,6 +35,21 @@ $(document).ready(() => {
       }
     })
   })
+  $("#deleteOne").click((data) => {
+    $.ajax({
+      type: "DELETE",
+      url: `/api/events/${data.id}`,
+      success: response => {
+        if (response == "error") {
+          console.error(`there was an error ${response}`)
+          console.log(data.id)
+        } else {
+          alert(data.id)
+          location.reload()
+        }
+      }
+    })
+  })
 })
 
 // window.addEventListener("load", () => {

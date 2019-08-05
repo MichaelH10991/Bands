@@ -48,6 +48,9 @@ function createCard({ name, support, city, venue, date, day, notes }) {
 
   let content = document.createElement("p")
 
+  let deleteButton = document.createElement("button")
+  deleteButton.id = "deleteOne"
+
   heading.textContent = name
   tag.textContent = date
   content.textContent = `${name} played at ${venue}, 
@@ -55,6 +58,7 @@ function createCard({ name, support, city, venue, date, day, notes }) {
   ${support}. Here are some notes: ${notes}`
 
   container.appendChild(heading)
+  container.appendChild(deleteButton)
   heading.appendChild(tag)
   container.appendChild(content)
 
