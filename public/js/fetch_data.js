@@ -30,12 +30,13 @@ function normalizeDate(date) {
   return date[0]
 }
 
-function createCard({ name, support, city, venue, date, day, notes }) {
+function createCard({ _id, name, support, city, venue, date, day, notes }) {
   date = normalizeDate(date)
+  console.log(_id)
 
   // card element`
   let card = document.createElement("div")
-  card.className = "w3-card-4 .center-content w3-white"
+  card.className = "w3-card-4 center-content w3-white"
 
   // container element
   let container = document.createElement("div")
@@ -49,7 +50,13 @@ function createCard({ name, support, city, venue, date, day, notes }) {
   let content = document.createElement("p")
 
   let deleteButton = document.createElement("button")
-  deleteButton.id = "deleteOne"
+  deleteButton.onclick = async function sendDeleteEvent() {
+    alert(`deleting "${name}"`)
+    location.reload()
+    return request = await fetch(`/api/events/${_id}`, {
+      method: 'DELETE'
+    })
+  }
 
   heading.textContent = name
   tag.textContent = date

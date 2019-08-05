@@ -30,7 +30,8 @@ $(document).ready(() => {
   })
   $("#submitButton").click(() => {
     $.ajax({
-      success: () => {
+      success: response => {
+        alert(response)
         location.reload()
       }
     })
