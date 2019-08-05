@@ -13,6 +13,6 @@ router.post("/", controller.submit)
 // delete all events
 router.delete("/", controller.nuke)
 // remove single event by id
-router.delete('/:id', controller.remove)
+router.delete('/:_id', controller.remove)
 
 module.exports = router

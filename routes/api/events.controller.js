@@ -13,6 +13,7 @@ exports.index = (req, res) => {
 // submit an event
 exports.submit = (req, res) => {
   let eventData = new Event(req.body)
+  console.log(`event submitted: ${eventData}`)
   eventData.save(err => {
     if (err) return handleError(res, err)
     return res.status(200)
@@ -21,8 +22,9 @@ exports.submit = (req, res) => {
 
 // get a single event
 exports.collect = (req, res) => {
-  // console.log(req.params)
-  Event.find({ name: req.params.name }, (err, Event) => {
+  let eventName = req.params.name
+  console.log(`data fetched: ${eventName}`)
+  Event.find({ name: eventName }, (err, Event) => {
     if (err) return handleError(res, err)
     if (!Event) return res.send(404)
     return res.send(Event)
@@ -37,6 +39,7 @@ exports.update = ({ body }, res) => {
 
 // nuke the database
 exports.nuke = (req, res) => {
+  console.log(`database deleted`)
   Event.deleteMany({}, err => {
     if (err) return handlerError(res, err)
     return res.status(200).send(`data nuked!`)
@@ -45,7 +48,8 @@ exports.nuke = (req, res) => {
 
 // find by id and remove
 exports.remove = (req, res) => {
-  Event.findByIdAndDelete({ id: req.params.id }, err => {
+  console.log(`event deleted by id: ${req.params}`)
+  Event.findByIdAndDelete({ _id: req.params._id }, err => {
     if (err) return handleError(res, err)
     return res.status(200).send('event removed')
   })
