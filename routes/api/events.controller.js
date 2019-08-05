@@ -43,6 +43,14 @@ exports.nuke = (req, res) => {
   })
 }
 
+// find by id and remove
+exports.remove = (req, res) => {
+  Event.findByIdAndDelete({ id: req.params.id }, err => {
+    if (err) return handleError(res, err)
+    return res.status(200).send('event removed')
+  })
+}
+
 // handle the errors
 function handleError(res, err) {
   return res.status(500).send(err)
