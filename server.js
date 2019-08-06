@@ -30,7 +30,7 @@ process.on('SIGINT', () => {
   })
 })
 
-const PORT = process.env.PORT || process.env.SERVER_PORT
+const PORT = process.env.PORT || process.env.API_PORT
 
 // route for index page
 app.get("/", (req, res) => {

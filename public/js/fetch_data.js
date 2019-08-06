@@ -8,6 +8,7 @@ get_data().catch(err => {
   console.log(`There was a fetch error: ${err}`)
 })
 
+
 document.getElementById("search").onclick = async function getAnEvent() {
   let searchParam = await document.getElementById("searchName").value
   let res = await fetch(`/api/events/${searchParam}`).catch((e) => {

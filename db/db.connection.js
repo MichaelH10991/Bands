@@ -14,6 +14,6 @@ mongoose
   .then(() => console.log(`connection to ${database}`))
   .catch(err => console.log(`first connection to the database failed: ${err}`))
 
-let db = mongoose.connection
+// let db = mongoose.connection
 
 db = module.exports = mongoose.connection

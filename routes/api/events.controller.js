@@ -2,6 +2,7 @@ let Event = require("../../models/events.model")
 
 // Get list of all events
 exports.index = (req, res) => {
+  console.log(`api received GET request`)
   Event.find(function (err, events) {
     if (err) {
       return handleError(res, err)
@@ -13,7 +14,7 @@ exports.index = (req, res) => {
 // submit an event
 exports.submit = (req, res) => {
   let eventData = new Event(req.body)
-  console.log(`event submitted: ${eventData}`)
+  console.log(`api received POST request to submit event: ${eventData}`)
   eventData.save(err => {
     if (err) return handleError(res, err)
     return res.status(200)
@@ -23,7 +24,7 @@ exports.submit = (req, res) => {
 // get a single event
 exports.collect = (req, res) => {
   let eventName = req.params.name
-  console.log(`data fetched: ${eventName}`)
+  console.log(`api received GET request for: ${eventName}`)
   Event.find({ name: eventName }, (err, Event) => {
     if (err) return handleError(res, err)
     if (!Event) return res.send(404)
@@ -39,7 +40,7 @@ exports.update = ({ body }, res) => {
 
 // nuke the database
 exports.nuke = (req, res) => {
-  console.log(`database deleted`)
+  console.log(`api received DELETE request to delete the database...`)
   Event.deleteMany({}, err => {
     if (err) return handlerError(res, err)
     return res.status(200).send(`data nuked!`)
@@ -48,8 +49,9 @@ exports.nuke = (req, res) => {
 
 // find by id and remove
 exports.remove = (req, res) => {
-  console.log(`event deleted by id: ${req.params}`)
-  Event.findByIdAndDelete({ _id: req.params._id }, err => {
+  let id = req.params._id
+  console.log(`api received DELETE request to delete event id: ${id}`)
+  Event.findByIdAndDelete({ _id: id }, err => {
     if (err) return handleError(res, err)
     return res.status(200).send('event removed')
   })
