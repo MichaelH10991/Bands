@@ -4,24 +4,27 @@ async function get_data() {
   let data = await res.json()
   await create_table(data)
 }
+
 get_data().catch(err => {
   console.log(`There was a fetch error: ${err}`)
 })
 
 
 document.getElementById("search").onclick = async function getAnEvent() {
-  let searchParam = await document.getElementById("searchName").value
-  let res = await fetch(`/api/events/${searchParam}`).catch((e) => {
-    console.log(e)
-  })
-  let data = await res.json()
-  if (!data.length) {
-    alert(`Event "${searchParam}" not found. 
+  try {
+    let searchParam = await document.getElementById("searchName").value
+    let res = await fetch(`/api/events/${searchParam}`)
+    if (res.status === 404) {
+      alert(`Event "${searchParam}" not found. 
     Note: 
     Search is case sensitive at this time, 
     sorry its a bit shit, but I plan on improving this, bare with.`)
-  } else {
-    writeToDocument(data)
+    } else {
+      writeToDocument(data)
+      let data = await res.json()
+    }
+  } catch (e) {
+    console.log(`there was an error: ${e}`)
   }
 }
 
@@ -31,7 +34,11 @@ document.getElementById("submitButton").onclick = async function createEvent(nam
   let data = await res.json()
 }
 
+/**
+ * Returns an event object.
+ */
 function eventObject() {
+
   let name = document.getElementById("name").innerText
   let support = document.getElementById("support").innerText
   let city = document.getElementById("city").innerText
@@ -51,6 +58,10 @@ function eventObject() {
   }
 }
 
+/**
+ * Handles writing search result to document.
+ * @param {*} data 
+ */
 function writeToDocument(data) {
   let anchor = document.getElementById("data")
   // destroy all child elements
@@ -63,11 +74,19 @@ function writeToDocument(data) {
   }
 }
 
+/**
+ * Returns a human readable date.
+ * @param {*} date 
+ */
 function normalizeDate(date) {
   date = date.split("T")
   return date[0]
 }
 
+/**
+ * Creates cards which contain event data.
+ * @param {*} param0 
+ */
 function createCard({ _id, name, support, city, venue, date, day, notes }) {
   date = normalizeDate(date)
 
@@ -114,6 +133,10 @@ function createCard({ _id, name, support, city, venue, date, day, notes }) {
   return card
 }
 
+/**
+ * Creates a table and fills it with events
+ * @param {*} data 
+ */
 function create_table(data) {
   // create table header
   let cols = ["Name", "Support", "City", "Venue", "Date", "Day", "Notes"]
