@@ -1,4 +1,4 @@
 module.exports = {
-  database: 'mongodb://mongo:27017/bandsDB',
+  database: process.env.DATABASE_URL,
   secret: 'yoursecret'
 }
