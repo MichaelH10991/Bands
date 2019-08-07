@@ -14,6 +14,7 @@ exports.index = (req, res) => {
 // submit an event
 exports.submit = (req, res) => {
   let eventData = new Event(req.body)
+  console.log(eventData)
   console.log(`api received POST request to submit event: ${eventData}`)
   eventData.save(err => {
     if (err) return handleError(res, err)
@@ -59,5 +60,6 @@ exports.remove = (req, res) => {
 
 // handle the errors
 function handleError(res, err) {
+  console.log(err)
   return res.status(500).send(err)
 }

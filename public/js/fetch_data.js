@@ -20,18 +20,21 @@ document.getElementById("search").onclick = async function getAnEvent() {
     Search is case sensitive at this time, 
     sorry its a bit shit, but I plan on improving this, bare with.`)
     } else {
-      writeToDocument(data)
       let data = await res.json()
+      writeToDocument(data)
     }
   } catch (e) {
     console.log(`there was an error: ${e}`)
   }
 }
 
-document.getElementById("submitButton").onclick = async function createEvent(name) {
+document.getElementById("submitButton").onclick = async function createEvent() {
   let event = eventObject()
-  let req = await fetch(`/api/events/${name.value}`, { method: 'POST' })
-  let data = await res.json()
+  console.log(event)
+  await fetch(`/api/events/`, {
+    method: 'POST',
+    body: JSON.stringify(event)
+  })
 }
 
 /**
@@ -39,13 +42,13 @@ document.getElementById("submitButton").onclick = async function createEvent(nam
  */
 function eventObject() {
 
-  let name = document.getElementById("name").innerText
-  let support = document.getElementById("support").innerText
-  let city = document.getElementById("city").innerText
-  let venue = document.getElementById("venue").innerText
-  let date = document.getElementById("date").innerText
-  let day = document.getElementById("day").innerText
-  let notes = document.getElementById("notes").innerText
+  let name = document.getElementById("name").value
+  let support = document.getElementById("support").value
+  let city = document.getElementById("city").value
+  let venue = document.getElementById("venue").value
+  let date = document.getElementById("date").value
+  let day = document.getElementById("day").value
+  let notes = document.getElementById("notes").value
 
   return event = {
     name: name,
