@@ -30,14 +30,23 @@ document.getElementById("search").onclick = async function getAnEvent() {
 
 document.getElementById("submitButton").onclick = async function createEvent() {
   let event = eventObject()
-  await fetch(`/api/events/`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(event)
-  })
+  try {
+    let res = await fetch(`/api/events/`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(event)
+    })
+    if (res.status === 400) {
+      alert("There was a problem with your submission, please check the fields and try again.")
+    } else if (res.status === 500) {
+      alert("Something has gone terribly wrong...")
+    }
+  } catch (e) {
+    console.log("there was a post error")
+  }
 }
 
 /**
