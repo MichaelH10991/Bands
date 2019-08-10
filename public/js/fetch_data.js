@@ -30,9 +30,12 @@ document.getElementById("search").onclick = async function getAnEvent() {
 
 document.getElementById("submitButton").onclick = async function createEvent() {
   let event = eventObject()
-  console.log(event)
   await fetch(`/api/events/`, {
     method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(event)
   })
 }
