@@ -29,48 +29,52 @@ document.getElementById("search").onclick = async function getAnEvent() {
 }
 
 document.getElementById("submitButton").onclick = async function createEvent() {
+  // let event = eventObject()
   let event = eventObject()
+  console.log(event)
   try {
     let res = await fetch(`/api/events/`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(event)
     })
-    if (res.status === 400) {
-      alert("There was a problem with your submission, please check the fields and try again.")
-    } else if (res.status === 500) {
-      alert("Something has gone terribly wrong...")
+    console.log(res.status)
+    switch (res.status) {
+      case 200:
+        location.reload()
+        break;
+      case 400:
+        alert("There was a problem with your submission, please check the fields and try again.")
+        break;
+      case 406:
+        alert("Looks like the date is in the wrong format.")
+        break;
+      case 500:
+        alert("Something has gone terribly wrong...")
+        break;
     }
   } catch (e) {
-    console.log("there was a post error")
+    console.log(`there was a post error ${e}`)
   }
 }
 
 /**
- * Returns an event object.
+ * Returns an event json.
  */
 function eventObject() {
-
-  let name = document.getElementById("name").value
-  let support = document.getElementById("support").value
-  let city = document.getElementById("city").value
-  let venue = document.getElementById("venue").value
-  let date = document.getElementById("date").value
-  let day = document.getElementById("day").value
-  let notes = document.getElementById("notes").value
-
-  return event = {
-    name: name,
-    support: support,
-    city: city,
-    venue: venue,
-    date: date,
-    day: day,
-    notes: notes
+  let keys = []
+  let values = []
+  // create keys
+  for (i = 0; i < 7; i++) {
+    let labelId = `label${i}`
+    let valueId = `value${i}`
+    keys.push(document.getElementById(labelId).innerHTML.toLowerCase())
+    values.push(document.getElementById(valueId).value)
   }
+  return obj = keys.reduce((obj, k, i) => ({ ...obj, [k]: values[i] }), {})
 }
 
 /**
