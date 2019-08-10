@@ -29,11 +29,11 @@ $(document).ready(() => {
     })
   })
   $("#submitButton").click(() => {
-    $.ajax({
-      success: () => {
-        location.reload()
-      }
-    })
+    // $.ajax({
+    //   success: () => {
+    //     location.reload()
+    //   }
+    // })
   })
   $("#deleteOne").click((data) => {
     $.ajax({
