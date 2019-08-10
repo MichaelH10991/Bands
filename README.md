@@ -5,33 +5,97 @@ This project is mostly a learning thing and a place to practice and break things
 # Steps
 
 - `git clone git@github.com:MichaelH10991/Bands.git`
-- `npm install`
+- `docker-compose up --build`
 
-To run the application in development mode, run;
+Mongo will set up a connection to the database `bandsDB` and handle any database connection errors. The database can be changed by editing the environment variables in the `.env` file.
 
-- `npm run dev`
+# REST API Reference
 
-then run the database
+## Get all events
 
-- `mongod`
+> GET `api/events/`
 
-## Set up mongoDB
+### Parameters
 
-> Test data is located in `database_config/`
-
-Download and set up MongoDB by following this handy [guide](https://treehouse.github.io/installation-guides/mac/mongo-mac.html).
-
-edit the `config.js` to include your own variables
-
-```javascript
-module.exports = {
-  database_url: "mongodb://localhost:27017/bandsDB",
-  database_name: "bandsDB",
-  collection_name: "bands"
-}
+```json
+{}
 ```
 
-- `node create_database.js`
-- `node test_data.js`
+### Example Response
 
-blah blah
+```json
+{
+    "_id": "5d4e9df64a7e01001783147e",
+    "name": "Flipper",
+    "support": "Various",
+    "city": "Bristol",
+    "venue": "Exchange",
+    "date": "2019-07-31T00:00:00.000Z",
+    "day": "Wednesday",
+    "notes": "Some notes",
+    "__v": 0
+  }
+```
+
+## Get a single event
+
+> GET `api/events/{name}`
+
+### Parameters 
+
+```json
+{"name": "Flipper"}
+  ```
+
+### Example response
+```json
+{
+    "_id": "5d4e9df64a7e01001783147e",
+    "name": "Flipper",
+    "support": "Various",
+    "city": "Bristol",
+    "venue": "Exchange",
+    "date": "2019-07-31T00:00:00.000Z",
+    "day": "Wednesday",
+    "notes": "Some notes",
+    "__v": 0
+  }
+```
+
+## Create a single event
+> POST `api/events/`
+
+### Parameters
+```json
+{
+  "name": "Flipper",
+  "support": "Various",  
+  "city": "Bristol",
+  "venue": "Exchange",
+  "date": "12/04/1997",
+  "day": "Wednesday",
+  "notes": "Some notes"
+}
+```
+### Example responses
+
+- `200 OK`
+- `400 Bad Request`
+- `406 Not Acceptable`
+
+### Delete an event
+
+> DELETE `api/events/{_id}`
+
+### Parameters
+
+```json 
+{"_id": "5d4e9df64a7e01001783147e"}
+```
+### Example response
+```json
+
+```
+
+
+
