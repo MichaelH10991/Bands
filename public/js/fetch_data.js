@@ -9,23 +9,15 @@ get_data().catch(err => {
   console.log(`There was a fetch error: ${err}`)
 })
 
-
 document.getElementById("search").onclick = async function getAnEvent() {
-  try {
-    let searchParam = await document.getElementById("searchName").value
-    let res = await fetch(`/api/events/${searchParam}`)
-    if (res.status === 404) {
-      alert(`Event "${searchParam}" not found. 
-    Note: 
-    Search is case sensitive at this time, 
-    sorry its a bit shit, but I plan on improving this, bare with.`)
-    } else {
-      let data = await res.json()
-      writeToDocument(data)
-    }
-  } catch (e) {
-    console.log(`there was an error: ${e}`)
-  }
+  let queryParam = await document.getElementById("searchName").value
+  await fetch(`/api/events/${queryParam}`)
+    .then(res => handleErrors(res, queryParam))
+    .then(res => {
+      writeToDocument(res.json())
+    }).catch(e => {
+      console.log(`error in frontend fetch ${e}`)
+    })
 }
 
 document.getElementById("submitButton").onclick = async function createEvent() {
@@ -42,12 +34,22 @@ document.getElementById("submitButton").onclick = async function createEvent() {
       body: JSON.stringify(event)
     })
     console.log(res.status)
+  } catch (e) {
+    console.log(`there was a post error ${e}`)
+  }
+}
+
+function handleErrors(res, param) {
+  if (res.ok === false) {
     switch (res.status) {
-      case 200:
-        location.reload()
-        break;
       case 400:
         alert("There was a problem with your submission, please check the fields and try again.")
+        break;
+      case 404:
+        alert(`Event "${param}" not found. 
+        Note: 
+          Search is case sensitive at this time, 
+          sorry its a bit shit, but I plan on improving this, bare with.`)
         break;
       case 406:
         alert("Looks like the date is in the wrong format.")
@@ -56,9 +58,9 @@ document.getElementById("submitButton").onclick = async function createEvent() {
         alert("Something has gone terribly wrong...")
         break;
     }
-  } catch (e) {
-    console.log(`there was a post error ${e}`)
+    throw Error(res.statusText);
   }
+  return res;
 }
 
 /**

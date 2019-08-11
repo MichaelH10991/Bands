@@ -21,13 +21,14 @@ exports.submit = (req, res) => {
   })
 }
 
-// get a single event
+// get events by name
 exports.collect = (req, res) => {
   let eventName = req.params.name
   console.log(`api received GET request for: ${eventName}`)
   Event.find({ name: eventName }, (err, Event) => {
+    console.log(`the event from api:`, Event)
+    if (!Event.length) return res.status(404).send('Event not found')
     if (err) return handleError(res, err)
-    if (!Event) return res.send(404)
     return res.send(Event)
   })
 }
