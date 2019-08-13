@@ -1,7 +1,17 @@
+// window.onload = async () => {
+//   await fetch("/api/events")
+//     .then(res => {
+//       let data = res.json()
+//       console.log(data)
+//       create_table(res.json())
+//     })
+//     .catch(e => console.log(`There was an initial fetch error: ${e}`))
+// }
 
 async function get_data() {
   let res = await fetch("/api/events")
   let data = await res.json()
+  console.log(data)
   await create_table(data)
 }
 
@@ -14,29 +24,28 @@ document.getElementById("search").onclick = async function getAnEvent() {
   await fetch(`/api/events/${queryParam}`)
     .then(res => handleErrors(res, queryParam))
     .then(res => {
-      writeToDocument(res.json())
+      let data = res.json()
+      writeToDocument(data)
     }).catch(e => {
       console.log(`error in frontend fetch ${e}`)
     })
 }
 
 document.getElementById("submitButton").onclick = async function createEvent() {
-  // let event = eventObject()
   let event = eventObject()
-  console.log(event)
-  try {
-    let res = await fetch(`/api/events/`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(event)
+  await fetch(`/api/events/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(event)
+  })
+    .then(handleErrors)
+    .catch(e => {
+      console.log(`there was a frontend POST error: ${e}`)
     })
-    console.log(res.status)
-  } catch (e) {
-    console.log(`there was a post error ${e}`)
-  }
+
 }
 
 function handleErrors(res, param) {
