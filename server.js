@@ -3,9 +3,10 @@ const environment = require("dotenv").config()
 const path = require("path")
 const app = express()
 const bodyParser = require("body-parser")
+const db = require("./db/db.connection")
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-let db = require("./db/db.connection")
 
 db.on('connected', () => {
   console.log('Database connection established')

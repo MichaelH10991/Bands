@@ -24,8 +24,9 @@ document.getElementById("search").onclick = async function getAnEvent() {
   await fetch(`/api/events/${queryParam}`)
     .then(res => handleErrors(res, queryParam))
     .then(res => {
-      let data = res.json()
-      writeToDocument(data)
+      return data = res.json()
+    }).then((data) => {
+      return writeToDocument(data)
     }).catch(e => {
       console.log(`error in frontend fetch ${e}`)
     })
@@ -57,8 +58,7 @@ function handleErrors(res, param) {
       case 404:
         alert(`Event "${param}" not found. 
         Note: 
-          Search is case sensitive at this time, 
-          sorry its a bit shit, but I plan on improving this, bare with.`)
+        Search is case sensitive at this time, sorry its a bit shit, but I plan on improving this, bare with.`)
         break;
       case 406:
         alert("Looks like the date is in the wrong format.")

@@ -1,3 +1,5 @@
 #!/bin/bash
-git push origin/master
-git push heroku master
+npm audit
+npm audit fix
+git push -f
+git push heroku master -f
