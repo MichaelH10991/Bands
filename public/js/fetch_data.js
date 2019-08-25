@@ -137,7 +137,7 @@ function createCard({ _id, name, support, city, venue, date, day, notes }) {
 
   let deleteButton = document.createElement("button")
   deleteButton.innerText = "Delete"
-  deleteButton.className = "w3-button w3-padding-large w3-white w3-border button-margin"
+  deleteButton.className = "w3-button w3-padding-large w3-white w3-border button-margin button-bottom-margin"
 
   deleteButton.onclick = async function sendDeleteEvent() {
     alert(`deleting "${name}"`)

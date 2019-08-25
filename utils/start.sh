@@ -1,2 +1,2 @@
 #!bin/bash
-mongod && nodemon ../server.js
+docker-compose up --build
