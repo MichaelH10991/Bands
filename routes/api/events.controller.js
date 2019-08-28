@@ -1,5 +1,9 @@
 let Event = require("../../models/events.model")
 
+exports.ping = (req, res) => {
+  res.send(200).json({ version: process.env.APP_VERSION })
+}
+
 // Get list of all events
 exports.index = (req, res) => {
   console.log(`api received GET request`)
