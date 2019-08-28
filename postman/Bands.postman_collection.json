@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "ea568226-7f57-4146-b6a3-ffa7577788d9",
+		"name": "Bands",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://shrouded-harbor-92072.herokuapp.com/api/events",
+					"protocol": "https",
+					"host": [
+						"shrouded-harbor-92072",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"events"
+					]
+				},
+				"description": "Gets all events"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a single event",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://shrouded-harbor-92072.herokuapp.com/api/events?name=Melvins",
+					"protocol": "https",
+					"host": [
+						"shrouded-harbor-92072",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"events"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Melvins"
+						}
+					]
+				},
+				"description": "Gets a single event"
+			},
+			"response": []
+		},
+		{
+			"name": "Submit event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "band name",
+							"type": "text"
+						},
+						{
+							"key": "support",
+							"value": "support name",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "city name",
+							"type": "text"
+						},
+						{
+							"key": "venue",
+							"value": "venue name",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "11/11/11",
+							"type": "text"
+						},
+						{
+							"key": "day",
+							"value": "day name",
+							"type": "text"
+						},
+						{
+							"key": "notes",
+							"value": "some notes",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://shrouded-harbor-92072.herokuapp.com/api/events",
+					"protocol": "https",
+					"host": [
+						"shrouded-harbor-92072",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"events"
+					]
+				},
+				"description": "Submits an event to database"
+			},
+			"response": []
+		}
+	]
+}

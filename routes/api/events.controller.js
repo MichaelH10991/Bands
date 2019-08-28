@@ -65,7 +65,7 @@ exports.remove = (req, res) => {
 // handle the errors
 function handleError(res, err) {
   console.log(err)
-  if (err.errors.date.name === 'CastError') return res.status(406).send(err)
-  if (err.name === 'ValidationError') return res.status(400).send(err)
+  if (err.errors.date.name === 'CastError') return res.status(406).send("Cast error")
+  if (err.name === 'ValidationError') return res.status(400).send("Form validation error")
   return res.status(500).send(err)
 }
