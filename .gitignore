@@ -1,6 +1,4 @@
 node_modules
 .env*
 /data
-removeElement.js
-thing1.js
-reverseArray.js
+/algorithms

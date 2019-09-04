@@ -25,7 +25,9 @@ The site is hosted using Heroku.
 
 ## Development
 
-For development this application is containerized using docker.
+For development this application is containerized using docker. To run the dockers execute;
+- `docker-compose up --build`
+Docker will spin up the backend and a mongo database to connect it to.
 
 # REST API Reference
 
@@ -41,16 +43,16 @@ N/A
 
 ```json
 {
-    "_id": "5d4e9df64a7e01001783147e",
-    "name": "Flipper",
-    "support": "Various",
-    "city": "Bristol",
-    "venue": "Exchange",
-    "date": "2019-07-31T00:00:00.000Z",
-    "day": "Wednesday",
-    "notes": "Some notes",
-    "__v": 0
-  }
+  "_id": "5d4e9df64a7e01001783147e",
+  "name": "Flipper",
+  "support": "Various",
+  "city": "Bristol",
+  "venue": "Exchange",
+  "date": "2019-07-31T00:00:00.000Z",
+  "day": "Wednesday",
+  "notes": "Some notes",
+  "__v": 0
+}
 ```
 
 ## Get a single event
@@ -66,16 +68,16 @@ GET `api/events/{name}`
 ### Example response
 ```json
 {
-    "_id": "5d4e9df64a7e01001783147e",
-    "name": "Flipper",
-    "support": "Various",
-    "city": "Bristol",
-    "venue": "Exchange",
-    "date": "2019-07-31T00:00:00.000Z",
-    "day": "Wednesday",
-    "notes": "Some notes",
-    "__v": 0
-  }
+  "_id": "5d4e9df64a7e01001783147e",
+  "name": "Flipper",
+  "support": "Various",
+  "city": "Bristol",
+  "venue": "Exchange",
+  "date": "2019-07-31T00:00:00.000Z",
+  "day": "Wednesday",
+  "notes": "Some notes",
+  "__v": 0
+}
 ```
 
 ## Create a single event
