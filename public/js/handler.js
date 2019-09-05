@@ -56,9 +56,7 @@ function handleErrors(res, param) {
         alert("There was a problem with your submission, please check the fields and try again.")
         break;
       case 404:
-        alert(`Event "${param}" not found. 
-        Note: 
-        Search is case sensitive at this time, sorry its a bit shit, but I plan on improving this, bare with.`)
+        alert(`Event "${param}" not found.\nNote: Search is case sensitive at this time, sorry its a bit shit, but I plan on improving this, bare with.`)
         break;
       case 406:
         alert("Looks like the date is in the wrong format.")
