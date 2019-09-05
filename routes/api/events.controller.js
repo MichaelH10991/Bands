@@ -1,7 +1,7 @@
 let Event = require("../../models/events.model")
 
 exports.ping = (req, res) => {
-  res.send(200).json({ version: process.env.APP_VERSION })
+  res.status(200).json({ version: process.env.API_VERSION })
 }
 
 // Get list of all events

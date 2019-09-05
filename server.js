@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
 app.use("/public", express.static(path.join(__dirname, "public")))
 
 // Middleware
-app.use("/api/events", require("./routes/api/events"))
+app.use(`/api/${process.env.API_VERSION}/`, require("./routes/api/events"))
 
 // listen on port
 app.listen(PORT, () => console.log(`server listening on port: ${PORT}`))
