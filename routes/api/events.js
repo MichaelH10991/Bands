@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const controller = require("./events.controller")
 
-routeer.get("/ping", controller.ping)
+router.get("/ping", controller.ping)
 // get all events
 router.get("/", controller.index)
 // get one event
