@@ -1,5 +1,5 @@
+require("dotenv").config()
 const express = require("express")
-const environment = require("dotenv").config()
 const path = require("path")
 const app = express()
 const bodyParser = require("body-parser")
@@ -26,7 +26,7 @@ db.on("error", (err) => {
 
 process.on('SIGINT', () => {
   db.close(() => {
-    console.log(termination("Mongoose default connection is disconnected due to application termination"))
+    console.log("Mongoose default connection is disconnected due to application termination")
     process.exit(0)
   })
 })
