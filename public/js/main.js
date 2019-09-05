@@ -1,8 +1,9 @@
+const api = "/api/v0.0.1/events"
 $(document).ready(() => {
   $("#deleteButton").click(() => {
     $.ajax({
       type: "DELETE",
-      url: "/api/events",
+      url: "/api/v0.0.1/events",
       success: response => {
         if (response == "error") {
           console.error(`there was an error ${response}`)
@@ -16,7 +17,7 @@ $(document).ready(() => {
   $("#deleteOne").click((data) => {
     $.ajax({
       type: "DELETE",
-      url: `/api/events/${data.id}`,
+      url: `/api/v0.0.1/events/${data.id}`,
       success: response => {
         if (response == "error") {
           console.error(`there was an error ${response}`)
