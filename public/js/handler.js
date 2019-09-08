@@ -1,13 +1,3 @@
-// window.onload = async () => {
-//   await fetch("/api/events")
-//     .then(res => {
-//       let data = res.json()
-//       console.log(data)
-//       create_table(res.json())
-//     })
-//     .catch(e => console.log(`There was an initial fetch error: ${e}`))
-// }
-
 const rootPath = "/api/v1.0"
 
 async function get_data() {
@@ -207,3 +197,40 @@ function create_table(data) {
   divContainer.innerHTML = ""
   divContainer.appendChild(table)
 }
+
+$(document).ready(() => {
+  $("#deleteButton").click(() => {
+    let con = confirm('Are you sure you want to delete all events?')
+    if (con === false) {
+      alert('Operation cancelled')
+    } else {
+      $.ajax({
+        type: "DELETE",
+        url: `${rootPath}/events`,
+        success: response => {
+          if (response == "error") {
+            console.error(`there was an error ${response}`)
+          } else {
+            alert("Data nuked!")
+            location.reload()
+          }
+        }
+      })
+    }
+  })
+  $("#deleteOne").click((data) => {
+    $.ajax({
+      type: "DELETE",
+      url: `${rootPath}/events/${data.id}`,
+      success: response => {
+        if (response == "error") {
+          console.error(`there was an error ${response}`)
+          console.log(data.id)
+        } else {
+          alert(data.id)
+          location.reload()
+        }
+      }
+    })
+  })
+})
