@@ -8,8 +8,10 @@
 //     .catch(e => console.log(`There was an initial fetch error: ${e}`))
 // }
 
+const rootPath = "/api/v1.0"
+
 async function get_data() {
-  let res = await fetch(`/api/v0.0.1/events`)
+  let res = await fetch(`${rootPath}/events`)
   let data = await res.json()
   console.log(data)
   await create_table(data)
@@ -21,7 +23,7 @@ get_data().catch(err => {
 
 document.getElementById("search").onclick = async function getAnEvent() {
   let queryParam = await document.getElementById("searchName").value
-  await fetch(`/api/v0.0.1/events/${queryParam}`)
+  await fetch(`${rootPath}/events/${queryParam}`)
     .then(res => handleErrors(res, queryParam))
     .then(res => {
       return data = res.json()
@@ -34,7 +36,7 @@ document.getElementById("search").onclick = async function getAnEvent() {
 
 document.getElementById("submitButton").onclick = async function createEvent() {
   let event = eventObject()
-  await fetch(`/api/v0.0.1/events/`, {
+  await fetch(`${rootPath}/events/`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -140,7 +142,7 @@ function createCard({ _id, name, support, city, venue, date, day, notes }) {
   deleteButton.onclick = async function sendDeleteEvent() {
     alert(`deleting "${name}"`)
     location.reload()
-    return request = await fetch(`/api/v0.0.1/events/${_id}`, {
+    return request = await fetch(`${rootPath}/events/${_id}`, {
       method: 'DELETE'
     })
   }

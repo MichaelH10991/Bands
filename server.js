@@ -38,6 +38,8 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/views/index.html"))
 })
 
+app.use("/src", express.static(path.join(__dirname, "src")))
+
 // set route for static folder
 app.use("/public", express.static(path.join(__dirname, "public")))
 
@@ -45,4 +47,4 @@ app.use("/public", express.static(path.join(__dirname, "public")))
 app.use(`/api/${process.env.API_VERSION}/`, require("./routes/api/events"))
 
 // listen on port
-app.listen(PORT, () => console.log(`server listening on port: ${PORT}`))
+app.listen(PORT, () => console.log(`API ${process.env.API_VERSION} listening on port: ${PORT}`))
