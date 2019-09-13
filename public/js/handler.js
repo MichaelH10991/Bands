@@ -1,4 +1,4 @@
-let aSecret = "087654"
+let aSecret = "REDACTED"
 const rootPath = "/api/v1.0"
 
 async function get_data() {
