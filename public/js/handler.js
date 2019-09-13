@@ -90,7 +90,7 @@ function writeToDocument(data) {
   }
   // create
   for (i = 0; i < data.length; i++) {
-    anchor.appendChild(createCard(data[i], anchor))
+    anchor.appendChild(createCard(data[i], data))
   }
 }
 
@@ -107,8 +107,14 @@ function normalizeDate(date) {
  * Creates cards which contain event data.
  * @param {*} param0 
  */
-function createCard({ _id, name, support, city, venue, date, day, notes }) {
+function createCard({ _id, name, support, city, venue, date, day, notes }, arr, i) {
   date = normalizeDate(date)
+
+  let dataArray = arr
+
+  let remove = document.createElement("button")
+  del.onclick() = () => { delete dataArray[i] }
+
 
   // card element`
   let card = document.createElement("div")
@@ -147,6 +153,7 @@ function createCard({ _id, name, support, city, venue, date, day, notes }) {
   heading.appendChild(tag)
   container.appendChild(content)
   container.appendChild(deleteButton)
+  container.appendChild(remove)
 
   card.appendChild(container)
 
