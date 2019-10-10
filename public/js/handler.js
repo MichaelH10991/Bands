@@ -66,12 +66,10 @@ function handleErrors(res, param) {
  * Returns an event json.
  */
 function eventObject() {
-  let keys = []
-  let values = []
+  let keys = [], values = []
   // create keys
   for (i = 0; i < 7; i++) {
-    let labelId = `label${i}`
-    let valueId = `value${i}`
+    let labelId = label$ + i, valueId = value + i
     keys.push(document.getElementById(labelId).innerHTML.toLowerCase())
     values.push(document.getElementById(valueId).value)
   }

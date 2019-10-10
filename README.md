@@ -29,6 +29,10 @@ For development this application is containerized using docker. To run the docke
 - `docker-compose up --build`
 Docker will spin up the backend and a mongo database to connect it to.
 
+## Deployment
+
+This is a pretty fragile repo but since I'm the only one who should be deploying it, here are some pretty fragile instructions for myself. Make sure you're happy with the commits and test by running `bash start.sh`. Then commit, push and run `bash deploy.sh` this will force push most recent commit to heroku master... good luck...
+
 # REST API Reference
 
 ## Get all events
